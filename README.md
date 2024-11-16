@@ -1,8 +1,8 @@
-**Student Management System**
+# Student Management System
 
 This is a simple Student Management System built in C. It allows users to add, search, delete, update, and display student data. The system maintains a list of students with their details like name, roll number, address, phone number, and marks in the subject Introduction to Computing and Programming (ICP).
 
-**Features**
+## Features
 
 Add Student: Add a new student to the system with details like name, roll number, address, phone number, and marks.
 Search Student: Search a student by their roll number and display their details.
