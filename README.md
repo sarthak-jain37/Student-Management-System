@@ -25,7 +25,7 @@ This is a simple Student Management System built in C. It allows users to add, s
 
 3. Compile the Java files:
    ```bash
-   gcc student-management-system.c -o student-management-system
+   gcc main.c -o student-management-system
    
 4. Run the program:
    ```bash
