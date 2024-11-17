@@ -209,7 +209,7 @@ int main()
         }
 
         printf("\nChoose one of the following actions:\n");
-        printf("1. Add Student \t 2. Search Student \t 3. Find ICP Marks of a Student \t 4. Count Students \t 5. Delete Student \t 6. Update a Student's Data 7. Exit\n");
+        printf("1. Add Student \t 2. Search Student \t 3. Find Marks of a Student \t 4. Count Students \t 5. Delete Student \t 6. Update Entry \t 7. Exit\n");
         scanf("%d", &action);
     }
 }
