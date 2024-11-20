@@ -50,7 +50,7 @@ void sortStudent(Student *students , int n)
     }
 }
 
-void searchStudent(int key, Student *students, int n)
+void searchStudent(Student *students, int n, int key)
 {
     sortStudent(students, n);
     int left = 0, right = n-1;
@@ -76,7 +76,7 @@ void searchStudent(int key, Student *students, int n)
     printf("Student with Rollno. %d was not found.\n" , key);
 }
 
-void deleteStudent(int choice, Student *students, int *n)
+void deleteStudent(Student *students, int *n, int choice)
 {
     for (int i = choice; i < *n-1; i++)
     {
@@ -122,7 +122,7 @@ void updateEntry(Student *student , int entry)
     }
 }
 
-void findMarks(Student *students,int key, int n)
+void findMarks(Student *students, int n, int key)
 {
     sortStudent(students, n);
     int left = 0, right = n - 1;
