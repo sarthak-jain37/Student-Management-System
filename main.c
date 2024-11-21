@@ -131,7 +131,8 @@ void updateEntry(Student *students, int idx, int n, int entry)
 {
 
     switch (entry)
-    {
+    {    
+    int rollNo;
     case 1:
         printf("Enter Students's name: ");
         scanf(" %[^\n]", students[idx].name);
@@ -139,7 +140,6 @@ void updateEntry(Student *students, int idx, int n, int entry)
         break;
 
     case 2:
-        int rollNo;
         printf("Enter Student's Roll Number: ");
         scanf(" %d", &rollNo);
         while (!checkRollNo(students, n, rollNo))
