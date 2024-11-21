@@ -6,7 +6,7 @@ typedef struct Students
     char name[50];
     int rollNo;
     char address[100];
-    char phoneNo[10];
+    char phoneNo[11];
     int marks;
 } Student;
 
@@ -88,7 +88,6 @@ void sortStudent(Student *students, int n)
 
 int searchStudent(Student *students, int n, int key)
 {
-    sortStudent(students, n);
     int left = 0, right = n - 1;
 
     while (left <= right)
@@ -123,37 +122,44 @@ void deleteStudent(Student *students, int *n, int index)
     printf("Deletion Succesful! \n\n");
 }
 
-void updateEntry(Student *student, int entry)
+void updateEntry(Student *students, int idx, int n, int entry)
 {
+
     switch (entry)
     {
     case 1:
         printf("Enter Students's name: ");
-        scanf(" %[^\n]", student->name);
+        scanf(" %[^\n]", students[idx].name);
         printf("Name Updated.\n");
         break;
 
     case 2:
         printf("Enter Student's Roll Number: ");
-        scanf(" %d", &student->rollNo);
+        scanf(" %d", &students[idx].rollNo);
+        while (!checkRollNo(students, n, students[idx].rollNo))
+        {
+            printf("Another Student has already been assigned that Roll Number.\n");
+            printf("Enter Student's Roll number: ");
+            scanf(" %d", &students[idx].rollNo);
+        }
         printf("Roll No. Updated.\n");
         break;
 
     case 3:
         printf("Enter Student's Address: ");
-        scanf(" %[^\n]", student->address);
+        scanf(" %[^\n]", students[idx].address);
         printf("Address Updated.\n");
         break;
 
     case 4:
         printf("Enter Student's Phone Number: ");
-        scanf(" %[^\n]", student->phoneNo);
+        scanf(" %[^\n]", students[idx].phoneNo);
         printf("Phone Number Updated.\n");
         break;
 
     case 5:
         printf("Enter Student's marks in ICP: ");
-        scanf(" %d", &student->marks);
+        scanf(" %d", &students[idx].marks);
         printf("Marks Updated.\n");
         break;
 
@@ -165,7 +171,6 @@ void updateEntry(Student *student, int entry)
 
 void findMarks(Student *students, int n, int key)
 {
-    sortStudent(students, n);
     int left = 0, right = n - 1;
     while (left <= right)
     {
@@ -207,7 +212,7 @@ int main()
     int action;
     printf("Welcome to the Student Management System!\n");
     printf("Choose one of the following actions:\n");
-    printf("1. Add student \t 2. Search Student \t 3. Find ICP Marks of a Student \t 4. Count Students \t 5. Delete Student \t 6. Update a Student's data \t 7. Display Students 8. Exit\n");
+    printf("1. Add student \t 2. Search Student \t 3. Find ICP Marks of a Student \t 4. Count Students \t 5. Delete Student \t 6. Update a Student's data \t 7. Display Students \t 8. Exit\n");
     scanf(" %d", &action);
     printf("\n");
 
@@ -278,7 +283,8 @@ int main()
             scanf("%d", &entry);
             if (entry != 6)
             {
-                updateEntry(&students[idx], entry);
+                updateEntry(students, idx, size, entry);
+                sortStudent(students, size);
             }
             break;
 
@@ -289,7 +295,7 @@ int main()
             }
         }
         printf("\nChoose one of the following actions:\n");
-        printf("1. Add Student \t 2. Search Student \t 3. Find Marks of a Student \t 4. Count Students \t 5. Delete Student \t 6. Update Entry \t 7. Display Students 8. Exit\n");
+        printf("1. Add Student \t 2. Search Student \t 3. Find Marks of a Student \t 4. Count Students \t 5. Delete Student \t 6. Update Entry \t 7. Display Students \t 8. Exit\n");
         scanf(" %d", &action);
     }
     return 0;
