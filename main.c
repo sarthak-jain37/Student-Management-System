@@ -59,6 +59,12 @@ void addStudent(Student *students, int *n)
     scanf(" %[^\n]", stud.phoneNo);
     printf("Enter %s's marks in ICP: ", stud.name);
     scanf(" %d", &stud.marks);
+    while (stud.marks < 0 || stud.marks > 100)
+    {
+        printf("Invalid Marks.\n");
+        printf("Enter Student's marks in ICP: ");
+        scanf(" %d", &stud.marks);
+    }
     students[(*n)++] = stud;
 }
 
@@ -96,7 +102,6 @@ int searchStudent(Student *students, int n, int key)
 
         if (students[mid].rollNo == key)
         {
-            displayStudent(students[mid]);
             return mid;
         }
         else if (students[mid].rollNo < key)
@@ -114,7 +119,7 @@ int searchStudent(Student *students, int n, int key)
 
 void deleteStudent(Student *students, int *n, int index)
 {
-    for (int i = index; i < *n - 1; i++)
+    for (int i = index; i < *n; i++)
     {
         students[i] = students[i + 1];
     }
@@ -134,14 +139,16 @@ void updateEntry(Student *students, int idx, int n, int entry)
         break;
 
     case 2:
+        int rollNo;
         printf("Enter Student's Roll Number: ");
-        scanf(" %d", &students[idx].rollNo);
-        while (!checkRollNo(students, n, students[idx].rollNo))
+        scanf(" %d", &rollNo);
+        while (!checkRollNo(students, n, rollNo))
         {
             printf("Another Student has already been assigned that Roll Number.\n");
             printf("Enter Student's Roll number: ");
-            scanf(" %d", &students[idx].rollNo);
+            scanf(" %d", &rollNo);
         }
+        students[idx].rollNo = rollNo;
         printf("Roll No. Updated.\n");
         break;
 
@@ -160,6 +167,13 @@ void updateEntry(Student *students, int idx, int n, int entry)
     case 5:
         printf("Enter Student's marks in ICP: ");
         scanf(" %d", &students[idx].marks);
+        while (students[idx].marks < 0 || students[idx].marks > 100)
+        {
+            printf("Invalid Marks.\n");
+            printf("Enter Student's marks in ICP: ");
+            scanf(" %d", &students[idx].marks);
+        }
+
         printf("Marks Updated.\n");
         break;
 
@@ -171,25 +185,8 @@ void updateEntry(Student *students, int idx, int n, int entry)
 
 void findMarks(Student *students, int n, int key)
 {
-    int left = 0, right = n - 1;
-    while (left <= right)
-    {
-        int mid = left + (right - left) / 2;
-        if (students[mid].rollNo == key)
-        {
-            printf("The ICP marks of the given student are: %d\n", students[mid].marks);
-            return;
-        }
-        else if (students[mid].rollNo < key)
-        {
-            left = mid + 1;
-        }
-        else if (students[mid].rollNo > key)
-        {
-            right = mid - 1;
-        }
-    }
-    printf("Student with Roll number: %d was not found.\n", key);
+    int idx = searchStudent(students, n, key);
+    printf("Marks of the Student: %d \n", students[idx].marks);
 }
 
 int main()
@@ -231,7 +228,9 @@ int main()
         case 2:
             printf("Please enter the Student's Roll Number: ");
             scanf(" %d", &rollno);
-            searchStudent(students, size, rollno);
+            idx = searchStudent(students, size, rollno);
+            if (idx > 0)
+                displayStudent(students[idx]);
             break;
 
         case 3:
@@ -257,6 +256,7 @@ int main()
             {
                 break;
             }
+            displayStudent(students[idx]);
             printf("Are you sure you want to delete this Student (Y / N) :");
             scanf(" %c", &confirm);
             if (confirm == 'Y' || confirm == 'y')
@@ -278,6 +278,7 @@ int main()
             {
                 break;
             }
+            displayStudent(students[idx]);
             int entry;
             printf("Which Entry would you like to update- 1. Name \t 2. Roll Number \t 3. Address \t 4. Phone Number \t 5. ICP Marks \t 6. Exit\n");
             scanf("%d", &entry);
