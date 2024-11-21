@@ -200,7 +200,7 @@ int main()
             }
             int entry;
             displayStudent(students[student - 1]);
-            printf("Which Entry would you like to update- 1. Name \t 2. Roll Number \t 3. Address \t 4. Phone Number \t 5. ICP Marks \t 6. Exit");
+            printf("Which Entry would you like to update- 1. Name \t 2. Roll Number \t 3. Address \t 4. Phone Number \t 5. ICP Marks \t 6. Exit\n");
             scanf("%d", &entry);
             if (entry != 6)
             {
