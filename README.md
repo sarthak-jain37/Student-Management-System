@@ -7,7 +7,7 @@ This is a simple Student Management System built in C. It allows users to add, s
 
 - Add Student: Add a new student to the system with details like name, roll number, address, phone number, and marks.
 - Search Student: Search a student by their roll number and display their details.
-- Find ICP Marks: (This feature is a placeholder for future implementation.)
+- Find ICP Marks: Find the marks scored by a student in the ICP subject.
 - Count Students: Display the total number of students in the system.
 - Delete Student: Remove students from the system based on their index.
 - Update Student: Update students' data, including their name, roll number, address, phone number, and ICP marks.
