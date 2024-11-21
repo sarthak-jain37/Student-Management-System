@@ -213,6 +213,8 @@ int main()
 
     while (action != 8)
     {
+        int choice;
+        int idx;
         switch (action)
         {
         case 1:
@@ -237,7 +239,6 @@ int main()
             break;
 
         case 5:
-            int choice;
             char confirm;
             printf("Enter the Roll Number of the Student to be deleted (Enter 0 to cancel deletion): ");
             scanf(" %d", &choice);
@@ -246,7 +247,7 @@ int main()
                 break;
             }
 
-            int idx = searchStudent(students, size, choice);
+            idx = searchStudent(students, size, choice);
             if (idx == -1)
             {
                 break;
