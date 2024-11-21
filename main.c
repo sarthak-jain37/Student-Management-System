@@ -215,6 +215,7 @@ int main()
     {
         int choice;
         int idx;
+        char confirm;
         switch (action)
         {
         case 1:
@@ -239,7 +240,6 @@ int main()
             break;
 
         case 5:
-            char confirm;
             printf("Enter the Roll Number of the Student to be deleted (Enter 0 to cancel deletion): ");
             scanf(" %d", &choice);
             if (choice == 0)
