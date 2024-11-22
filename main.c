@@ -70,7 +70,7 @@ void addStudent(Student *students, int *n)              // Function to add a new
 
 void displayStudent(Student stud)                       // Function to Display the Student details
 {
-    printf("Name of the student: %s\n", stud.name);
+    printf("\nName of the student: %s\n", stud.name);
     printf("Roll Number: %d\n", stud.rollNo);
     printf("Address: %s\n", stud.address);
     printf("Phone Number: %s\n", stud.phoneNo);
@@ -131,12 +131,8 @@ void updateEntry(Student *students, int idx, int n, int entry)  // Function to u
 {
 
     switch (entry)
-<<<<<<< HEAD
     {
 
-=======
-    {    
->>>>>>> 8c36fd1509ec37c494a2a20fe399e26235f2874d
     int rollNo;
     case 1:
         printf("Enter Students's name: ");
@@ -228,7 +224,7 @@ int main()
     {
         int choice;
         int idx;
-        int rollno = 0;      // Initialize Roll Number  
+        int rollno;        
         char confirm;
         switch (action)
         {
@@ -241,7 +237,8 @@ int main()
             printf("Please enter the Student's Roll Number: ");
             scanf(" %d", &rollno);
             idx = searchStudent(students, size, rollno);
-            if (idx > 0)    // Displays the Student details only if the roll number exists 
+
+            if (idx >= 0)    // Displays the Student details only if the roll number exists 
                 displayStudent(students[idx]);
             break;
 
