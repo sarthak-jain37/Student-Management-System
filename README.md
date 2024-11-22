@@ -5,11 +5,11 @@
 This is a simple Student Management System built in C. It allows users to add, search, delete, update, and display student data. The system maintains a list of students with their details, including name, roll number, address, phone number, and marks in the subject Introduction to Computing and Programming (ICP).
 ## Features
 
-- Add Student: Add a new student to the system with details like name, roll number, address, phone number, and marks.
+- Add Student: Add a new student to the system with details like name, unique roll number, address, phone number, and marks.
 - Search Student: Search a student by their roll number and display their details.
 - Find ICP Marks: Find the marks scored by a student in the ICP subject.
 - Count Students: Display the total number of students in the system.
-- Delete Student: Remove students from the system based on their index.
+- Delete Student: Delete students from the system using their roll number.
 - Update Student: Update students' data, including their name, roll number, address, phone number, and ICP marks.
 - Display All Students: View all students currently stored in the system
 

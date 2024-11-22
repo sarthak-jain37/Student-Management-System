@@ -131,8 +131,12 @@ void updateEntry(Student *students, int idx, int n, int entry)  // Function to u
 {
 
     switch (entry)
+<<<<<<< HEAD
     {
 
+=======
+    {    
+>>>>>>> 8c36fd1509ec37c494a2a20fe399e26235f2874d
     int rollNo;
     case 1:
         printf("Enter Students's name: ");
