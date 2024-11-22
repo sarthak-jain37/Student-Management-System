@@ -1,18 +1,18 @@
 #include <stdio.h>
-#define MAX_SIZE 500
+#define MAX_SIZE 500    // Maximum number of students
 
-typedef struct Students
+typedef struct Students     // Structure to define a student
 {
-    char name[50];
-    int rollNo;
-    char address[100];
-    char phoneNo[11];
-    int marks;
+    char name[50];          // Student name
+    int rollNo;             // Student Roll number
+    char address[100];      // Student address
+    char phoneNo[11];       // Student phone number
+    int marks;              // Student marks in ICP
 } Student;
 
-int checkRollNo(Student *students, int n, int rollNo)
+int checkRollNo(Student *students, int n, int rollNo)   // Function to check if a Roll number exists
 {
-    int left = 0, right = n - 1;
+    int left = 0, right = n - 1;                        // Using Binary search 
 
     while (left <= right)
     {
@@ -20,34 +20,34 @@ int checkRollNo(Student *students, int n, int rollNo)
 
         if (students[mid].rollNo == rollNo)
         {
-            return 0;
+            return 0;                                   // Roll Number found, hence invlaid 
         }
         else if (students[mid].rollNo < rollNo)
         {
-            left = mid + 1;
+            left = mid + 1;                             // Search right half
         }
         else if (students[mid].rollNo > rollNo)
         {
-            right = mid - 1;
+            right = mid - 1;                            // Search left half
         }
     }
-    return 1;
+    return 1;                                           // The roll number is unique
 }
 
-void addStudent(Student *students, int *n)
+void addStudent(Student *students, int *n)              // Function to add a new Student to the database
 {
-    if (*n >= MAX_SIZE)
+    if (*n >= MAX_SIZE)                                 // Checks for space for another student 
     {
         printf("Cannot add more students. Maximum capacity reached.\n");
-        return;
+        return;                             
     }
 
-    Student stud;
+    Student stud;                                       // Temporary student type variable
     printf("Enter the name of the Student: ");
     scanf(" %[^\n]", stud.name);
     printf("Enter %s's Roll number: ", stud.name);
     scanf(" %d", &stud.rollNo);
-    while (!checkRollNo(students, *n, stud.rollNo))
+    while (!checkRollNo(students, *n, stud.rollNo))     // Ensures that a unique Roll Number has been entered
     {
         printf("Another Student has already been assigned that Roll Number.\n");
         printf("Enter %s's Roll number: ", stud.name);
@@ -59,16 +59,16 @@ void addStudent(Student *students, int *n)
     scanf(" %[^\n]", stud.phoneNo);
     printf("Enter %s's marks in ICP: ", stud.name);
     scanf(" %d", &stud.marks);
-    while (stud.marks < 0 || stud.marks > 100)
+    while (stud.marks < 0 || stud.marks > 100)          // Checks if the marks entered are valid
     {
         printf("Invalid Marks.\n");
         printf("Enter Student's marks in ICP: ");
         scanf(" %d", &stud.marks);
     }
-    students[(*n)++] = stud;
+    students[(*n)++] = stud;                            // Adds the student to the array 
 }
 
-void displayStudent(Student stud)
+void displayStudent(Student stud)                       // Function to Display the Student details
 {
     printf("Name of the student: %s\n", stud.name);
     printf("Roll Number: %d\n", stud.rollNo);
@@ -77,7 +77,7 @@ void displayStudent(Student stud)
     printf("Marks in ICP: %d\n\n", stud.marks);
 }
 
-void sortStudent(Student *students, int n)
+void sortStudent(Student *students, int n)              // Sorts the Student data using Insertion Sort
 {
     for (int i = 1; i < n; i++)
     {
@@ -92,7 +92,7 @@ void sortStudent(Student *students, int n)
     }
 }
 
-int searchStudent(Student *students, int n, int key)
+int searchStudent(Student *students, int n, int key)    //  Binary search to find a student by roll number
 {
     int left = 0, right = n - 1;
 
@@ -102,11 +102,11 @@ int searchStudent(Student *students, int n, int key)
 
         if (students[mid].rollNo == key)
         {
-            return mid;
+            return mid;                                 // Roll Number found
         }
         else if (students[mid].rollNo < key)
         {
-            left = mid + 1;
+            left = mid + 1;                         
         }
         else if (students[mid].rollNo > key)
         {
@@ -114,24 +114,26 @@ int searchStudent(Student *students, int n, int key)
         }
     }
     printf("Student with Roll Number %d was not found.\n", key);
-    return -1;
+    return -1;                                          // Roll number not found
 }
 
-void deleteStudent(Student *students, int *n, int index)
+void deleteStudent(Student *students, int *n, int index)    // Function to delete a Student 
 {
-    for (int i = index; i < *n; i++)
+    for (int i = index; i < *n - 1; i++)
     {
-        students[i] = students[i + 1];
+        students[i] = students[i + 1];                      // Shifts all elements to the left by 1 position to remove the student
     }
-    (*n)--;
+    (*n)--;                                                 // Decrement student count
     printf("Deletion Succesful! \n\n");
 }
 
-void updateEntry(Student *students, int idx, int n, int entry)
+void updateEntry(Student *students, int idx, int n, int entry)  // Function to update Student details
 {
 
     switch (entry)
     {
+
+    int rollNo;
     case 1:
         printf("Enter Students's name: ");
         scanf(" %[^\n]", students[idx].name);
@@ -139,7 +141,6 @@ void updateEntry(Student *students, int idx, int n, int entry)
         break;
 
     case 2:
-        int rollNo;
         printf("Enter Student's Roll Number: ");
         scanf(" %d", &rollNo);
         while (!checkRollNo(students, n, rollNo))
@@ -183,17 +184,23 @@ void updateEntry(Student *students, int idx, int n, int entry)
     }
 }
 
-void findMarks(Student *students, int n, int key)
+void findMarks(Student *students, int n, int key)           // Finds the marks of the student by roll number
 {
     int idx = searchStudent(students, n, key);
-    printf("Marks of the Student: %d \n", students[idx].marks);
+    if(idx < 0){
+        return;
+    }
+    printf("\nName: %s \n", students[idx].name);
+    printf("Roll Number: %d \n", students[idx].rollNo);
+    printf("Marks: %d \n", students[idx].marks);
 }
 
 int main()
 {
-    int size = 0;
-    int rollno = 0;
-    Student students[MAX_SIZE];
+    int size = 0;                     // Initialize size as 0
+    Student students[MAX_SIZE];       // Array to store students
+
+    // Pre - defined Students
     students[size++] = (Student){"Henry", 108, "890 Elm St", "4443332221", 82};
     students[size++] = (Student){"Eva", 105, "654 Birch Blvd", "8887776666", 88};
     students[size++] = (Student){"Alice", 101, "123 Main Street", "9876543210", 90};
@@ -204,36 +211,37 @@ int main()
     students[size++] = (Student){"David", 104, "321 Maple Dr", "7778889999", 78};
     students[size++] = (Student){"Ivy", 109, "567 Spruce Ct", "3332221110", 89};
     students[size++] = (Student){"Bob", 102, "456 Oak Ave", "1234567890", 85};
-    sortStudent(students, size);
+    sortStudent(students, size);    // Sorting the array
 
-    int action;
+    int action;      // Stores the action to be performed 
     printf("Welcome to the Student Management System!\n");
     printf("Choose one of the following actions:\n");
     printf("1. Add student \t 2. Search Student \t 3. Find ICP Marks of a Student \t 4. Count Students \t 5. Delete Student \t 6. Update a Student's data \t 7. Display Students \t 8. Exit\n");
     scanf(" %d", &action);
     printf("\n");
 
-    while (action != 8)
+    while (action != 8)       // Loop until the user chooses to exit 
     {
         int choice;
         int idx;
+        int rollno = 0;      // Initialize Roll Number  
         char confirm;
         switch (action)
         {
-        case 1:
+        case 1:               // Add a new Student
             addStudent(students, &size);
-            sortStudent(students, size);
+            sortStudent(students, size);    // Sort after adding a Student
             break;
 
-        case 2:
+        case 2:             // Search for a Student by Roll Number 
             printf("Please enter the Student's Roll Number: ");
             scanf(" %d", &rollno);
             idx = searchStudent(students, size, rollno);
-            if (idx > 0)
+            if (idx > 0)    // Displays the Student details only if the roll number exists 
                 displayStudent(students[idx]);
             break;
 
-        case 3:
+        case 3:             
             printf("Please enter the Student's Roll Number: ");
             scanf(" %d", &rollno);
             findMarks(students, size, rollno);
