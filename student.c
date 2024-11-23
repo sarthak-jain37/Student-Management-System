@@ -1,49 +1,50 @@
 #include "student.h"
 
-Student *loadStudentsFromCSV(Student *students, int *n, const char *filename)
+Student *loadStudentsFromCSV(Student *students, int *n, const char *filename) // Function to load student records from a CSV file
 {
-    FILE *file = fopen(filename, "r");
-    if (!file)
+    FILE *file = fopen(filename, "r");          // Opens the file for reading
+    if (!file)                                  // Checks if the file is successfully opened 
     {
-        printf("Error opening file!\n");
-        return NULL;
+        printf("Error opening file!\n");        // If the file doesn't open, display error message
+        return NULL;                            // Return NULL to indicate failure
     }
 
-    Student stud;
+    Student stud;                               // Temporary variable to store the student 
 
-    char line[200];
-    while (fgets(line, sizeof(line), file))
+    char line[200];                             // Array to hold each line read from the file
+
+    while (fgets(line, sizeof(line), file))     // Loop to read each line from the CSV file
     {
         if (sscanf(line, "%49[^,],%d,%99[^,],%10[^,],%d", stud.name, &stud.rollNo, stud.address, stud.phoneNo, &stud.marks) == 5)
         {
             students[(*n)++] = stud;
         }
     }
-    fclose(file);
-    return students;
+    fclose(file);                                // Close the file after reading
+    return students;                             // Return the students array with the loaded data
 }
 
-void saveStudentsToCSV(Student *students, int n, const char *filename)
+void saveStudentsToCSV(Student *students, int n, const char *filename)  // Function to save student records to a CSV file
 {
-    FILE *file = fopen(filename, "w");
+    FILE *file = fopen(filename, "w");      // Open the file for writing
     if (!file)
     {
-        printf("Error opening file!\n");
+        printf("Error opening file!\n");    // Display error message if the file can't be opened
         return;
     }
-    fprintf(file, "Name,RollNo,Address,PhoneNo,Marks\n");
+    fprintf(file, "Name,RollNo,Address,PhoneNo,Marks\n");   // CSV header
 
     for (int i = 0; i < n; i++)
     {
         fprintf(file, "%s,%d,%s,%s,%d\n", students[i].name, students[i].rollNo, students[i].address, students[i].phoneNo, students[i].marks);
     }
 
-    fclose(file);
+    fclose(file);       // Closes the file after writing 
 }
 
 int checkRollNo(Student *students, int n, int rollNo) // Function to check if a Roll number exists
 {
-    int left = 0, right = n - 1; // Using Binary search
+    int left = 0, right = n - 1;    // Using Binary search
 
     while (left <= right)
     {
@@ -51,18 +52,18 @@ int checkRollNo(Student *students, int n, int rollNo) // Function to check if a 
 
         if (students[mid].rollNo == rollNo)
         {
-            return 0; // Roll Number found, hence invalid
+            return 0;   // Roll Number found, hence invalid
         }
         else if (students[mid].rollNo < rollNo)
         {
-            left = mid + 1; // Search right half
+            left = mid + 1;     // Search right half
         }
         else if (students[mid].rollNo > rollNo)
         {
-            right = mid - 1; // Search left half
+            right = mid - 1;    // Search left half
         }
     }
-    return 1; // The roll number is unique
+    return 1;   // The roll number is unique
 }
 
 void addStudent(Student *students, int *n, const int MAX) // Function to add a new Student to the database

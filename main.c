@@ -7,7 +7,7 @@ int main()
     int size = 0;               // Initialize size as 0
     Student students[MAX_SIZE]; // Array to store students
 
-    loadStudentsFromCSV(students, &size, "students.csv");
+    loadStudentsFromCSV(students, &size, "students.csv"); // Loads Student records from a CSV file
     sortStudent(students, size); // Sorting the array
 
     int action; // Stores the action to be performed
@@ -26,7 +26,7 @@ int main()
             scanf(" %c", &confirm);
             if (confirm == 'Y' || confirm == 'y')
             {
-                saveStudentsToCSV(students, size, "students.csv");
+                saveStudentsToCSV(students, size, "students.csv");     // Saves student records to a CSV file
             }
             break;
         }
