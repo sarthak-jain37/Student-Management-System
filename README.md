@@ -2,7 +2,7 @@
 
 ## Description
 
-This is a simple Student Management System built in C. It allows users to add, search, delete, update, and display student data. The system maintains a list of students with their details, including name, roll number, address, phone number, and marks in the subject Introduction to Computing and Programming (ICP).
+The Student Management System, built in C, enables users to add, search, delete, update, and display student information. It maintains a record of students, including their name, roll number, address, phone number, and marks in the subject Introduction to Computing and Programming (ICP). The system supports saving and loading student data from CSV files. It also sorts students by roll number and allows updating individual student details, such as name, roll number, address, phone number, and marks.
 ## Features
 
 - Add Student: Add a new student to the system with details like name, unique roll number, address, phone number, and marks.
@@ -23,9 +23,9 @@ This is a simple Student Management System built in C. It allows users to add, s
    ```bash
    cd student-management-system
 
-3. Compile the Java files:
+3. Compile the C files:
    ```bash
-   gcc main.c -o student-management-system
+   gcc main.c student.c -o student-management-system
    
 4. Run the program:
    ```bash
