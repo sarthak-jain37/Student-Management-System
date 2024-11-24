@@ -6,16 +6,17 @@ The Student Management System, built in C, enables users to add, search, delete,
 
 ## Key Features
 
-•	Modular Design: Organized into functions like addStudent(), deleteStudent(), and sortStudent() to enhance readability and maintainability.
-•	Data Persistence: Supports saving and loading data from CSV files, preserving changes across sessions.
-•	User Interaction: Clear prompts and descriptive messages guide users, minimizing confusion.
-•	Error Handling: Validates inputs (marks, roll numbers, indices) to prevent crashes or unintended behavior.
-•	Critical Action Confirmation: Asks for confirmation before deleting data or exiting, minimizing the risk of mistakes.
-•	Efficiency: Uses binary search (O(log n)) for searching and insertion sort (O(n²)) for sorting, optimizing operations for small datasets.
-•	Scalability: Handles up to 500 students by default (adjustable via MAX_SIZE).
-•	Real-Time Updates: Automatically re-sorts the list after updates, ensuring accurate data handling.
-•	Efficient Deletion: Implements in-place deletion, optimizing memory usage by shifting records rather than leaving gaps.
-•	Cross-Platform: Works on any platform supporting GCC or Clang compilers.
+- **Modular Design**: Organized into functions like `addStudent()`, `deleteStudent()`, and `sortStudent()` to enhance readability and maintainability.
+- **Data Persistence**: Supports saving and loading data from CSV files, preserving changes across sessions.
+- **User Interaction**: Clear prompts and descriptive messages guide users, minimizing confusion.
+- **Error Handling**: Validates inputs (marks, roll numbers, indices) to prevent crashes or unintended behavior.
+- **Critical Action Confirmation**: Asks for confirmation before deleting data or exiting, minimizing the risk of mistakes.
+- **Efficiency**: Uses binary search (O(log n)) for searching and insertion sort (O(n²)) for sorting, optimizing operations for small datasets.
+- **Scalability**: Handles up to 500 students by default (adjustable via `MAX_SIZE`).
+- **Real-Time Updates**: Automatically re-sorts the list after updates, ensuring accurate data handling.
+- **Efficient Deletion**: Implements in-place deletion, optimizing memory usage by shifting records rather than leaving gaps.
+- **Cross-Platform**: Works on any platform supporting GCC or Clang compilers.
+
 
 ## Installation Steps
 
